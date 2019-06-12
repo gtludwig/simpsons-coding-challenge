@@ -12,7 +12,7 @@ drop table if exists phrase;
 
 create table phrase (
     id VARCHAR(255) not null primary key,
-    character VARCHAR(255) not null references character(id),
+    character_id VARCHAR(255) not null references character(id),
     phrase VARCHAR(511) not null
 );
 
@@ -27,7 +27,7 @@ insert into character values ('59edee68ea392a3947485d41', 'Todd', 'Flanders', 'h
 insert into character values ('59edee682c7acf7bfac7e66b', 'Maude', 'Flanders', 'https://vignette.wikia.nocookie.net/simpsons/images/9/95/Maude_Flanders.png/revision/latest/scale-to-width-down/286?cb=20170923223722', 49);
 
 insert into phrase values ('59edff64d9be8f7aa11e0c44', '59edee68706374dfa957842f','Wait a minute. Bart''s teacher is named ''Krabappel''? Oh, I’ve been calling her ''Crandall.'' Why didn''t anyone tell me? Ohhh, I''ve been making an idiot out of myself!');
-insert into phrase values ('59edff6492d619b4a933a56b', '59edee68706374dfa957842f','Now we play the waiting game…Ahh, the waiting game sucks. Let\’s play Hungry Hungry Hippos!');
+insert into phrase values ('59edff6492d619b4a933a56b', '59edee68706374dfa957842f','Now we play the waiting game…Ahh, the waiting game sucks. Let''s play Hungry Hungry Hippos!');
 insert into phrase values ('59edff6477ac8539e526682b', '59edee689509e51682ff8e02','Go out on a Tuesday? Who am I, Charlie Sheen?');
 insert into phrase values ('59edff647cf388e225bc5f4e', '59edee689509e51682ff8e02','I brought you a tuna sandwich. They say it''s brain food. I guess because there''s so much dolphin in it, and you know how smart they are.');
 insert into phrase values ('59edff64ac4dccc4b0e35784', '59edee68eff3f80413c136f8','I''d be mortified if someone ever made a lousy product with the Simpson name on it.');

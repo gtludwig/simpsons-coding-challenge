@@ -12,7 +12,7 @@ public class Phrase extends BasePojo {
     private static final long serialVersionUID = 1L;
 
     @ManyToOne
-    @JoinColumn(name = "character", nullable = false)
+    @JoinColumn(name = "character_id", nullable = false)
     private Character character;
 
     private String phrase;

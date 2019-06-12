@@ -1,10 +1,11 @@
 package ie.gtludwig.citi.simpsons.persistence.model;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.net.URL;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Table(name = "character")
@@ -20,8 +21,19 @@ public class Character extends BasePojo{
 
     private int age;
 
-    @OneToMany(mappedBy = "character")
-    private Set<Phrase> phraseSet;
+    @OneToMany(mappedBy = "character", fetch = FetchType.EAGER)
+    private List<Phrase> phraseList ;
+
+    public Character() {
+    }
+
+    public Character(String firstName, String lastName, URL picture, int age, List<Phrase> phraseList) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.picture = picture;
+        this.age = age;
+        this.phraseList = phraseList;
+    }
 
     public String getFirstName() {
         return firstName;
@@ -55,11 +67,11 @@ public class Character extends BasePojo{
         this.age = age;
     }
 
-    public Set<Phrase> getPhraseSet() {
-        return phraseSet;
+    public List<Phrase> getPhraseList() {
+        return phraseList;
     }
 
-    public void setPhraseSet(Set<Phrase> phraseSet) {
-        this.phraseSet = phraseSet;
+    public void setPhraseList(List<Phrase> phraseList) {
+        this.phraseList = phraseList;
     }
 }
