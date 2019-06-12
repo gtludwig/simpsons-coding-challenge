@@ -44,7 +44,7 @@
                             <a th:href="@{/characters(lastName=${pojo.lastName})}" th:text="${pojo.firstName + ' ' + pojo.lastName}" ></a>
                         </td>
                         <td style="text-align: center" th:text="${pojo.age}" />
-                        <td style="text-align: center" th:text="${pojo.phraseSet.size()}" />
+                        <td style="text-align: center" th:text="${pojo.phraseList.size()}" />
 
                     </tr>
                     </tbody>
