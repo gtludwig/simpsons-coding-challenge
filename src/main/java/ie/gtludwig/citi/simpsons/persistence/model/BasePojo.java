@@ -15,7 +15,7 @@ public class BasePojo implements _Pojo {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @Column(name = "_id", unique = true)
+    @Column(name = "id", unique = true)
     private String id;
 
     public String getId() {

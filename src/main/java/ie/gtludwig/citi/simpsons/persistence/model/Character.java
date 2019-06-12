@@ -7,7 +7,7 @@ import java.net.URL;
 import java.util.Set;
 
 @Entity
-@Table(name = "simpsons_character")
+@Table(name = "character")
 public class Character extends BasePojo{
 
     private static final long serialVersionUID = 1L;

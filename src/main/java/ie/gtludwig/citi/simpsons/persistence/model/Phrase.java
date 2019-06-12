@@ -6,7 +6,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "simpsons_phrase")
+@Table(name = "phrase")
 public class Phrase extends BasePojo {
 
     private static final long serialVersionUID = 1L;

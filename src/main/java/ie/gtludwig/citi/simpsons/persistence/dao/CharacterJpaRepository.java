@@ -9,7 +9,7 @@ public interface CharacterJpaRepository extends JpaRepository<Character, String>
 
     List<Character> findAllByFirstName(String firstName);
 
-    List<Character> findAllByLastName(String lastName);
+    List<Character> findByLastName(String lastName);
 
 
 }

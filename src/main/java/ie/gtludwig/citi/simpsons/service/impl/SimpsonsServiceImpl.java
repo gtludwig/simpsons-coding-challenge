@@ -1,8 +1,10 @@
 package ie.gtludwig.citi.simpsons.service.impl;
 
+import ie.gtludwig.citi.simpsons.persistence.dao.PhraseJpaRepository;
 import ie.gtludwig.citi.simpsons.persistence.model.Character;
 import ie.gtludwig.citi.simpsons.persistence.dao.CharacterJpaRepository;
-import ie.gtludwig.citi.simpsons.service.CharacterService;
+import ie.gtludwig.citi.simpsons.persistence.model.Phrase;
+import ie.gtludwig.citi.simpsons.service.SimpsonsService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,13 +12,16 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service(value = "characterService")
-public class CharacterServiceImpl implements CharacterService {
+@Service(value = "simpsonsService")
+public class SimpsonsServiceImpl implements SimpsonsService {
 
     @Autowired
     private CharacterJpaRepository characterJpaRepository;
 
-    private static Logger logger = LoggerFactory.getLogger(CharacterServiceImpl.class);
+    @Autowired
+    private PhraseJpaRepository phraseJpaRepository;
+
+    private static Logger logger = LoggerFactory.getLogger(SimpsonsServiceImpl.class);
 
     @Override
     public void create(Character pojo) {
@@ -83,6 +88,11 @@ public class CharacterServiceImpl implements CharacterService {
 
     @Override
     public List<Character> findAllByLastName(String lastName) {
-        return characterJpaRepository.findAllByLastName(lastName);
+        return characterJpaRepository.findByLastName(lastName);
+    }
+
+    @Override
+    public List<Phrase> findAllByCharacter(Character character) {
+        return phraseJpaRepository.findAllByCharacter(character);
     }
 }
