@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/default}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div layout:fragment="content" >
+    <div class="container-fluid">
+        <div class="row justify-content-md-center justify-content-lg-center justify-content-xl-center">
+            <div class="col-md-auto col-lg-auto col-xl-auto">
+
+                <table id="characters" class="table table-bordered table-hover table-responsive table-striped">
+                    <thead>
+                        <tr>
+                            <th th:text="#{character.firstName}">firstName</th>
+                            <th th:text="#{character.lastName}">lastName</th>
+                            <th th:text="#{character.age}">age</th>
+                            <th th:text="#{character.numberOfQuotes}">numberOfQuotes</th>
+<!--                            <th th:text="#">listQuotes</th>-->
+                        </tr>
+                    </thead>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+</body>
+</html>
