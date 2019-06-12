@@ -36,4 +36,6 @@ public class SimpsonsApplication {
     public static void main(String[] args) {
         SpringApplication.run(SimpsonsApplication.class);
     }
+
+
 }
