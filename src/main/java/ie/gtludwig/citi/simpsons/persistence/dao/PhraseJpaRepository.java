@@ -1,4 +1,4 @@
-package ie.gtludwig.citi.simpsons.persistence.model.dao;
+package ie.gtludwig.citi.simpsons.persistence.dao;
 
 import ie.gtludwig.citi.simpsons.persistence.model.Character;
 import ie.gtludwig.citi.simpsons.persistence.model.Phrase;
