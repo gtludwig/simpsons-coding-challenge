@@ -22,7 +22,6 @@ public class SimpsonsRestController {
     @Autowired
     private PhraseService phraseService;
 
-
     // CREATE ONE CHARACTER
     @PostMapping(value = "/characters", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
