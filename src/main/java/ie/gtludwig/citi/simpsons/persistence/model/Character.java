@@ -1,4 +1,4 @@
-package ie.gtludwig.citi.simpsons;
+package ie.gtludwig.citi.simpsons.persistence.model;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;

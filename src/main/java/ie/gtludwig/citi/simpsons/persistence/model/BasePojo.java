@@ -1,4 +1,4 @@
-package ie.gtludwig.citi.simpsons;
+package ie.gtludwig.citi.simpsons.persistence.model;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
