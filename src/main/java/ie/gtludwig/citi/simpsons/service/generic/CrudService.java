@@ -9,7 +9,7 @@ public interface CrudService<Pojo extends BasePojo> extends Service {
 
     Pojo retrieve(final String id);
 
-    void update(String id, Pojo pojo);
+    void update(Pojo pojo);
 
-    void delete(String id);
+    void delete(Pojo pojo);
 }

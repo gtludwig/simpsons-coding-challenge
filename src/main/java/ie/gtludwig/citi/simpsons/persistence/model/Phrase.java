@@ -6,18 +6,23 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "simpsons_phrase")
+@Table(name = "phrase")
 public class Phrase extends BasePojo {
 
     private static final long serialVersionUID = 1L;
 
     @ManyToOne
-    @JoinColumn(name = "character", nullable = false)
+    @JoinColumn(name = "character_id", nullable = false)
     private Character character;
 
     private String phrase;
 
     public Phrase() {}
+
+    public Phrase(Character character, String phrase) {
+        this.character = character;
+        this.phrase = phrase;
+    }
 
     public Character getCharacter() {
         return character;

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/default}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div layout:fragment="content" >
+    <div class="container-fluid">
+        <div class="row justify-content-md-center justify-content-lg-center justify-content-xl-center">
+            <div class="col-md-auto col-lg-auto col-xl-auto">
+
+                <a th:href="@{/}" >
+                    <button class="btn btn-outline-primary" th:text="#{gen.back}" />
+                </a>
+
+                <div class="row text-center">
+                    <div class="col-md-4 col-lg-4 col-xl-4" >
+                        <div id="charImage" >
+                            <img th:src="${character.picture}" height="200" width="200" />
+                        </div>
+                    </div>
+
+                    <div class="col-md-8 col-lg-8 col-xl-8" >
+                        <div>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span  class="input-group-text" th:text="#{character.fullName}" ></span>
+                                </div>
+                                <input type="text" class="form-control" th:value="${character.firstName + ' ' + character.lastName}" th:readonly="true">
+
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" th:text="#{character.age}" ></span>
+                                    </div>
+
+                                    <input type="text" class="form-control" th:value="${character.age}" th:readonly="true">
+                                </div>
+                            </div>
+
+                            <table id="phrases" class="table table-bordered table-hover table-responsive table-striped">
+                                <thead>
+                                <tr>
+                                    <th th:text="#{character.phrases}">phrases</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="pojo : ${pojoList}">
+
+                                    <td style="text-align: center" >
+                                        <span th:text="${pojo.phrase}" />
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
