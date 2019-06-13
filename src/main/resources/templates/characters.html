@@ -5,22 +5,36 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+
 </head>
 <body>
-<script type="text/javascript">
-    $(document).ready(function () {
 
-    });
-
-</script>
 <div layout:fragment="content" >
     <div class="container-fluid">
         <div class="row justify-content-md-center justify-content-lg-center justify-content-xl-center">
             <div class="col-md-auto col-lg-auto col-xl-auto">
 
-                <a th:href="@{/}" >
-                    <button class="btn btn-outline-primary" th:text="#{gen.back}" />
-                </a>
+                <div class="row">
+                    <th:block th:if="${initial == false}" >
+                        <div class="text-left" >
+                            <a th:href="@{/}" >
+                                <button class="btn btn-outline-primary" th:text="#{gen.back}" />
+                            </a>
+                        </div>
+                    </th:block>
+                    <th:block th:if="${initial == true}" >
+                        <a th data-target="modal-addCharacter" data-toggle="modal"
+                           th:attr="data-target='#modal-addCharacter'">
+                            <span class="btn btn-outline-primary" th:text="#{character.add}"></span>
+                        </a>
+                    </th:block>
+
+                    <div class="float-right" >
+                        <a th:href="@{/swagger-ui.html}" target="_blank" >
+                            <button class="btn btn-outline-primary" th:text="#{gen.apiDoc}" />
+                        </a>
+                    </div>
+                </div>
 
                 <table id="characters" class="table table-bordered table-hover table-responsive table-striped">
                     <thead>
@@ -29,7 +43,7 @@
                             <th th:text="#{character.fullName}">lastName</th>
                             <th th:text="#{character.age}">age</th>
                             <th th:text="#{character.numberOfQuotes}">numberOfQuotes</th>
-<!--                            <th th:text="#">listQuotes</th>-->
+                            <th th:text="#{gen.actions}">actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -37,25 +51,149 @@
 
                         <td style="text-align: center" >
                             <a th:href="@{/listPhrases(id=${pojo.id})}" >
-                                <img th:src="${pojo.picture}" height="20px" width="20px">
+                                <img th:src="${pojo.picture}" height="20px" width="20px" th:title="#{phrase.list}">
                             </a>
                         </td>
                         <td style="text-align: center">
-                            <a th:href="@{/characters(lastName=${pojo.lastName})}" th:text="${pojo.firstName + ' ' + pojo.lastName}" ></a>
+                            <a th:href="@{/(lastName=${pojo.lastName})}" th:text="${pojo.firstName + ' ' + pojo.lastName}" ></a>
                         </td>
                         <td style="text-align: center" th:text="${pojo.age}" />
-                        <td style="text-align: center" th:text="${pojo.phraseList.size()}" />
+                        <td style="text-align: center">
+                            <span th:text="${pojo.phraseList.size()}"></span>
+                            <a th:href="@{/phrases/listByCharacter(id=${pojo.id})}" >
+                                <span class="fa fa-search" th:title="#{phrase.list}"></span>
+                            </a>
+
+                        </td>
+                        <td style="text-align: center">
+                            <a th:href="@{/edit(id=${pojo.id})}" class="fa fa-edit" th:title="#{gen.edit}" />
+                            <a th:href="@{/character/delete(id=${pojo.id})}" th:attr="onclick='return confirm(\'' + #{gen.confirm} + '\');'" class="fa fa-remove" th:title="#{gen.remove}" />
+                        </td>
 
                     </tr>
                     </tbody>
                 </table>
 
             </div>
+
+            <div class="modal fade" th:id="modal-addCharacter">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <label th:text="#{character.add}"/>
+                            <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form role="form" action="#" method="post" th:action="@{/createCharacter}">
+
+                                <div class="form-group row">
+                                    <div class="col-lg">
+                                        <label th:for="firstName" th:text="#{character.firstName}"/>
+                                        <input class="form-control" id="firstName" th:field="*{character.firstName}" type="text">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-lg">
+                                        <label th:for="lastName" th:text="#{character.lastName}"/>
+                                        <input class="form-control" id="lastName" th:field="*{character.lastName}" type="text">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-lg">
+                                        <label th:for="picture" th:text="#{character.picture}"/>
+                                        <input class="form-control" id="picture" th:field="*{character.picture}" type="url">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-lg">
+                                        <label th:text="#{character.age}"/>
+                                        <input class="form-control" th:field="*{character.age}" type="text">
+                                    </div>
+                                </div>
+
+                                <div class="modal-footer" id="createControls">
+                                    <button class="btn btn-secondary" data-dismiss="modal" type="button" th:text="#{gen.cancel}">Close</button>
+                                    <button class="btn btn-success btn-pill" id="submitButton" th:text="#{gen.submit}"
+                                            type="submit">Submit
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="modal fade" th:id="modal-editCharacter">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <label th:text="#{character.edit}"/>
+                            <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form role="form" action="#" method="post" th:action="@{/createCharacter}">
+
+                                <div class="form-group row">
+                                    <div class="col-lg">
+                                        <label th:text="#{character.firstName}"/>
+                                        <input class="form-control" th:field="*{character.firstName}" type="text">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-lg">
+                                        <label th:text="#{character.lastName}"/>
+                                        <input class="form-control" th:field="*{character.lastName}" type="text">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-lg">
+                                        <label th:text="#{character.picture}"/>
+                                        <input class="form-control" th:field="*{character.picture}" type="url">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-lg">
+                                        <label th:text="#{character.age}"/>
+                                        <input class="form-control" th:field="*{character.age}" type="text">
+                                    </div>
+                                </div>
+
+                                <div class="modal-footer" id="editControls">
+                                    <button class="btn btn-secondary" data-dismiss="modal" type="button" th:text="#{gen.cancel}">Close</button>
+                                    <button class="btn btn-success btn-pill" id="submitButton" th:text="#{gen.submit}"
+                                            type="submit">Submit
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
         </div>
+
     </div>
 </div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        ('#modal-addCharacter').modal({
+            backdrop: 'static',
+            keyboard: 'false'
+        })
+    });
 
-
+</script>
 
 </body>
 </html>
