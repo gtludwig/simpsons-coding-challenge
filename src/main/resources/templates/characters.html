@@ -13,7 +13,6 @@
     <div class="container-fluid">
         <div class="row justify-content-md-center justify-content-lg-center justify-content-xl-center">
             <div class="col-md-8 col-lg-8 col-xl-8">
-
                 <div class="text-center">
                     <th:block th:if="${initial == false}" >
                         <div class="text-left" >
@@ -33,47 +32,53 @@
                     </a>
                 </div>
 
-                <div>
-                    <table style="width: max-content" id="characters" class="table table-bordered table-hover table-responsiable-striped">
-                        <thead>
-                        <tr>
-                            <th th:text="#{character.picture}">firstName</th>
-                            <th th:text="#{character.fullName}">lastName</th>
-                            <th th:text="#{character.age}">age</th>
-                            <th th:text="#{character.numberOfQuotes}">numberOfQuotes</th>
-                            <th th:text="#{gen.actions}">actions</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr th:each="pojo : ${pojoList}">
+                <br />
+                <br />
+                <div class="row text-center">
+                    <div class="col-md-12 col-lg-12 col-xl-12">
 
-                            <td style="text-align: center" >
-                                <a th:href="@{/listPhrases(id=${pojo.id})}" >
-                                    <img th:src="${pojo.picture}" height="20px" width="20px" th:title="#{phrase.list}">
-                                </a>
-                            </td>
-                            <td style="text-align: center">
-                                <a th:href="@{/(lastName=${pojo.lastName})}" th:text="${pojo.firstName + ' ' + pojo.lastName}" ></a>
-                            </td>
-                            <td style="text-align: center" th:text="${pojo.age}" />
-                            <td style="text-align: center">
-                                <span th:text="${pojo.phraseList.size()}"></span>
-                                <a th:href="@{/phrases/listByCharacter(id=${pojo.id})}" >
-                                    <span class="fa fa-search" th:title="#{phrase.list}"></span>
-                                </a>
+                        <div style="overflow-x: auto;">
+                            <table id="characters" class="table table-bordered table-hover table-responsiable-striped">
+                                <thead>
+                                <tr>
+                                    <th th:text="#{character.picture}">firstName</th>
+                                    <th th:text="#{character.fullName}">lastName</th>
+                                    <th th:text="#{character.age}">age</th>
+                                    <th th:text="#{character.numberOfQuotes}">numberOfQuotes</th>
+                                    <th th:text="#{gen.actions}">actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="pojo : ${pojoList}">
 
-                            </td>
-                            <td style="text-align: center">
-                                <a href="#" class="fa fa-edit" id="editCharacter" th:title="#{gen.edit}" th:attr="onclick='javascript:retrieveCharacter(\'' + ${pojo.id} + '\');'"/>
-                                <!--                            <a th:href="@{/edit(id=${pojo.id})}" class="fa fa-edit" th:title="#{gen.edit}" />-->
-                                <a th:href="@{/character/delete(id=${pojo.id})}" th:attr="onclick='return confirm(\'' + #{gen.confirm} + '\');'" class="fa fa-remove" th:title="#{gen.remove}" />
-                            </td>
+                                    <td style="text-align: center" >
+                                        <a th:href="@{/listPhrases(id=${pojo.id})}" >
+                                            <img th:src="${pojo.picture}" height="20px" width="20px" th:title="#{phrase.list}">
+                                        </a>
+                                    </td>
+                                    <td style="text-align: center">
+                                        <a th:href="@{/(lastName=${pojo.lastName})}" th:text="${pojo.firstName + ' ' + pojo.lastName}" ></a>
+                                    </td>
+                                    <td style="text-align: center" th:text="${pojo.age}" />
+                                    <td style="text-align: center">
+                                        <span th:text="${pojo.phraseList.size()}"></span>
+                                        <a th:href="@{/phrases/listByCharacter(id=${pojo.id})}" >
+                                            <span class="fa fa-search" th:title="#{phrase.list}"></span>
+                                        </a>
 
-                        </tr>
-                        </tbody>
-                    </table>
+                                    </td>
+                                    <td style="text-align: center">
+                                        <a href="#" class="fa fa-edit" id="editCharacter" th:title="#{gen.edit}" th:attr="onclick='javascript:retrieveCharacter(\'' + ${pojo.id} + '\');'"/>
+                                        <!--                            <a th:href="@{/edit(id=${pojo.id})}" class="fa fa-edit" th:title="#{gen.edit}" />-->
+                                        <a th:href="@{/character/delete(id=${pojo.id})}" th:attr="onclick='return confirm(\'' + #{gen.confirm} + '\');'" class="fa fa-remove" th:title="#{gen.remove}" />
+                                    </td>
+
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
-
 
             </div>
 
