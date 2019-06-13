@@ -47,6 +47,7 @@ public class SimpsonsRestController {
     @GetMapping(value = "/characters/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public Character findCharacterById(@PathVariable(value = "id") String id) {
+        System.out.println(id);
         return characterService.retrieveCharacter(id);
     }
 
