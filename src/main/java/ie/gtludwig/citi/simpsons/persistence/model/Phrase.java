@@ -19,6 +19,11 @@ public class Phrase extends BasePojo {
 
     public Phrase() {}
 
+    public Phrase(Character character, String phrase) {
+        this.character = character;
+        this.phrase = phrase;
+    }
+
     public Character getCharacter() {
         return character;
     }

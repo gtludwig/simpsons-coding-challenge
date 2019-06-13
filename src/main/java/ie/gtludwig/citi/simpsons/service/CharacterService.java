@@ -18,7 +18,7 @@ public interface CharacterService extends CrudService<Character> {
 
     void deleteCharacter(String id);
 
-
+    List<Character> findAllCharactersByCriteria(String criteria);
 
     // APP
     List<Character> findAllCharacters();

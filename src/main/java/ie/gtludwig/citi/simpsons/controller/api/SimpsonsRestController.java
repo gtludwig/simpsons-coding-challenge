@@ -29,11 +29,18 @@ public class SimpsonsRestController {
         characterService.createCharacter(character.getFirstName(), character.getLastName(), character.getPicture(), character.getPhraseList(), character.getAge());
     }
 
-    // RETRIEVE ALL CHARACTER
+    // RETRIEVE ALL CHARACTERS
     @GetMapping(value = "/characters", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public List<Character> getAllCharacters() {
         return characterService.findAllCharacters();
+    }
+
+    // RETRIEVE ALL CHARACTERS
+    @GetMapping(value = "/characters/{criteria}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    public List<Character> getAllCharacters(@PathVariable(value = "criteria") String criteria) {
+        return characterService.findAllCharactersByCriteria(criteria);
     }
 
     // RETRIEVE ONE CHARACTER

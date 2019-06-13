@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service(value = "characterService")
@@ -96,6 +97,22 @@ public class CharacterServiceImpl implements CharacterService {
     @Override
     public void deleteCharacter(String id) {
         delete(retrieve(id));
+    }
+
+    @Override
+    public List<Character> findAllCharactersByCriteria(String criteria) {
+        List<Character> characterList = new ArrayList<>();
+
+        if(characterJpaRepository.findByLastName(criteria) != null) {
+            return characterJpaRepository.findByLastName(criteria);
+        }
+        if (characterJpaRepository.findByFirstName(criteria) != null) {
+            return characterJpaRepository.findByFirstName(criteria);
+        }
+        if (characterJpaRepository.findByAge(Integer.parseInt(criteria)) != null) {
+            return characterJpaRepository.findByAge(Integer.parseInt(criteria));
+        }
+        return characterList;
     }
 
     @Override
